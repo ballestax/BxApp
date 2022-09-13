@@ -38,9 +38,9 @@ class ProductListFragment : Fragment() {
 //        binding.categoriesList.
 
         binding.rvProductsList.adapter = adapter
-        //binding.rvProductsList.layoutManager = LinearLayoutManager(this.context)
-        binding.rvProductsList.layoutManager = GridLayoutManager(this.context, 2)
-
+        binding.rvProductsList.layoutManager = LinearLayoutManager(this.context)
+//        binding.rvProductsList.layoutManager = GridLayoutManager(this.context,2)
+//
 
         viewModel.productList.observe(getViewLifecycleOwner(), Observer {
             Log.d("ProductListFragment", "onCreate: $it")
