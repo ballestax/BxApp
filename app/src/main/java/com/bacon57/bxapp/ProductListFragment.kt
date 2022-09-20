@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bacon57.bxapp.databinding.FragmentProductListBinding
 
@@ -24,6 +23,7 @@ class ProductListFragment : Fragment() {
     private val retrofitService = RetrofitService.getInstance()
 
     val adapter = ItemAdapter()
+    lateinit var filterAdapter: FilterAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,10 +32,15 @@ class ProductListFragment : Fragment() {
         _binding = FragmentProductListBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        viewModel = ViewModelProvider(this, ProductViewModelFactory(ProductsRepository(retrofitService)))
-            .get(ProductListViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this, ProductViewModelFactory(
+                ProductsRepository(retrofitService),
+                CategoriesRepository(retrofitService)
+            )
+        ).get(ProductListViewModel::class.java)
 
-//        binding.categoriesList.
+        filterAdapter = FilterAdapter(requireContext())
+        binding.categoriesList.adapter = filterAdapter
 
         binding.rvProductsList.adapter = adapter
         binding.rvProductsList.layoutManager = LinearLayoutManager(this.context)
@@ -51,7 +56,13 @@ class ProductListFragment : Fragment() {
 
         })
 
+        viewModel.categoriesList.observe(getViewLifecycleOwner(), Observer {
+            Log.d("ProductListFragment", "onCreate: $it")
+            filterAdapter.setCategoryList(it)
+        })
+
         viewModel.getAllProducts()
+        viewModel.getAllCategories()
 
         return view
     }

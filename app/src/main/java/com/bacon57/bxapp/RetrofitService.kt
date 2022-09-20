@@ -11,6 +11,9 @@ interface RetrofitService {
     @GET("products")
     fun getlAllProducts() : Call<List<Product>>
 
+    @GET("categories")
+    fun getlAllCategories() : Call<List<Category>>
+
     companion object {
         var retrofitService: RetrofitService? = null
         fun getInstance(): RetrofitService{

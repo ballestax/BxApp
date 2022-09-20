@@ -9,7 +9,8 @@
         <entry key="app/src/main/res/layout/adapter_product.xml" value="0.31278890600924497" />
         <entry key="app/src/main/res/layout/fragment_order.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_product_detail.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_product_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_product_list.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/product_filter.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>
     </option>
