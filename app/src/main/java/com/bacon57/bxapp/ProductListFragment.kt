@@ -36,9 +36,12 @@ class ProductListFragment : Fragment() {
         viewModel = ViewModelProvider(
             this, ProductViewModelFactory(
                 ProductsRepository(retrofitService),
-                CategoriesRepository(retrofitService)
+                CategoriesRepository(retrofitService),
+
             )
         ).get(ProductListViewModel::class.java)
+
+
 
 
         binding.categoriesList.adapter = adapterCat
@@ -79,5 +82,7 @@ class ProductListFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 
 }

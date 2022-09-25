@@ -6,11 +6,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bacon57.bxapp.databinding.AdapterProductBinding
 
-class ItemAdapter: RecyclerView.Adapter<ProductViewHolder>(){
+class ItemAdapter(
+) : RecyclerView.Adapter<ProductViewHolder>() {
 
     var products = mutableListOf<Product>()
 
-    fun setproductList(products: List<Product>){
+
+
+    fun setproductList(products: List<Product>) {
         this.products = products.toMutableList()
         notifyDataSetChanged()
     }
@@ -28,6 +31,10 @@ class ItemAdapter: RecyclerView.Adapter<ProductViewHolder>(){
     }
 
     override fun getItemCount(): Int {
-        return  products.size
+        return products.size
     }
+}
+
+interface OnClickListener {
+    fun onItemClick(product: Product)
 }

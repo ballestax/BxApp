@@ -7,6 +7,10 @@
         <variable
             name="product"
             type="com.bacon57.bxapp.Product" />
+
+        <variable
+            name="viewmodel"
+            type="com.bacon57.bxapp.ProductListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -66,17 +70,18 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
-            android:text="+"
+            android:drawableLeft="@drawable/ic_baseline_add_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.931"
-            app:layout_constraintStart_toEndOf="@+id/ivImage" />
+            app:layout_constraintStart_toEndOf="@+id/ivImage"
+            android:onClick="@{()->viewmodel.onProductCLick(product)}"/>
 
         <Button
             android:id="@+id/btPref"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text="#"
+            android:drawableLeft="@drawable/ic_baseline_playlist_add_24"
             android:layout_marginRight="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btAdd" />

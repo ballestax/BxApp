@@ -1,5 +1,6 @@
 package com.bacon57.bxapp
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,7 +12,7 @@ import retrofit2.Response
 
 class ProductListViewModel(
     private val repository: ProductsRepository,
-    private val catRepository: CategoriesRepository
+    private val catRepository: CategoriesRepository,
 ) :
     ViewModel() {
 
@@ -33,7 +34,8 @@ class ProductListViewModel(
     }
 
     fun onProductCLick(product: Product) {
-
+        //Toast.makeText(this, "click on @{product.name}", Toast.LENGTH_LONG).show()
+        println(":::click on @{product.name}")
     }
 
     fun getAllProducts() {
