@@ -7,20 +7,25 @@ import com.squareup.picasso.Picasso
 import java.text.NumberFormat
 
 class ProductViewHolder(
-    val binding: AdapterProductBinding
+    val binding: AdapterProductBinding,
+    val onClickListener: (Product)->Unit,
+    val onClickListener2: (Product)->Unit,
 ) : RecyclerView.ViewHolder(binding.root) {
 
     val format: NumberFormat = NumberFormat.getNumberInstance()
 
     fun render(product: Product) {
         binding.tvName.text = product.name
-        binding.tvCategory.text = "Categoria"
+        binding.tvCategory.text = product.category.replaceFirstChar { char-> char.uppercase() }
         binding.tvPrice.text = format.format(product.price)
 //        binding.ivImage
         Picasso.get().load("https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg")
             .into(binding.ivImage)
         binding.btAdd.setOnClickListener{
-            Toast.makeText(binding.root.context, product.name, Toast.LENGTH_LONG).show()
+            onClickListener(product)
+        }
+        binding.btPref.setOnClickListener{
+            onClickListener2(product)
         }
     }
 

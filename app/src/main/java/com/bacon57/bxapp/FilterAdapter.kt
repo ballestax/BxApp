@@ -37,7 +37,7 @@ class FilterAdapter: RecyclerView.Adapter<CategoryViewHolder>(){
 class CategoryViewHolder(val binding: AdapterCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun render(category: Category) {
-        binding.tvFilterName.text = category.name
+        binding.tvFilterName.text = category.name.uppercase()
         // binding.btAdd.setOnClickListener{ onClickListener(product) }
     }
 

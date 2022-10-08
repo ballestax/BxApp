@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bacon57.bxapp.databinding.AdapterProductBinding
 
 class ItemAdapter(
+    private val onClickListener: (Product) ->Unit,
+    private val onClickListener2: (Product) ->Unit,
 ) : RecyclerView.Adapter<ProductViewHolder>() {
 
     var products = mutableListOf<Product>()
-
-
 
     fun setproductList(products: List<Product>) {
         this.products = products.toMutableList()
@@ -21,7 +21,7 @@ class ItemAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = AdapterProductBinding.inflate(inflater, parent, false)
-        return ProductViewHolder(binding)
+        return ProductViewHolder(binding, onClickListener, onClickListener2)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
@@ -37,4 +37,5 @@ class ItemAdapter(
 
 interface OnClickListener {
     fun onItemClick(product: Product)
+    fun onItemCustomClick(product: Product)
 }

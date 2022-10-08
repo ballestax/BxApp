@@ -20,4 +20,11 @@ class MainActivity : AppCompatActivity() {
                 .add(R.id.root_layout, ProductListFragment(), "productList").commit()
 
     }
+
+    private fun  replaceFragment(fragment: Fragment){
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.root_layout, fragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
+    }
 }

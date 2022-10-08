@@ -75,7 +75,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.931"
             app:layout_constraintStart_toEndOf="@+id/ivImage"
-            android:onClick="@{()->viewmodel.onProductCLick(product)}"/>
+            />
 
         <Button
             android:id="@+id/btPref"
