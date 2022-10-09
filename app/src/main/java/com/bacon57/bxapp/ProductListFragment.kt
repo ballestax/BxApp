@@ -39,11 +39,13 @@ class ProductListFragment : Fragment() {
         viewModel = ViewModelProvider(
             this, ProductViewModelFactory(
                 ProductsRepository(retrofitService),
-                CategoriesRepository(retrofitService)
+                CategoriesRepository(retrofitService),
+                -1
             )
-        ).get(ProductListViewModel::class.java)
+        )[ProductListViewModel::class.java]
 
-        adapterProd = ItemAdapter({ product -> onItemSelected(product) }, {product-> onItemCustomSelected(product)})
+        adapterProd = ItemAdapter({ product -> onItemSelected(product) },
+            { product -> onItemCustomSelected(product) })
 
         binding.categoriesList.adapter = adapterCat
         binding.categoriesList.layoutManager =
@@ -91,11 +93,16 @@ class ProductListFragment : Fragment() {
 
     fun onItemCustomSelected(product: Product) {
 
-        Toast.makeText(this.context, "${product.name.uppercase()} [${product.price}]", Toast.LENGTH_SHORT)
-            .show()
+        Toast.makeText(
+            this.context,
+            "${product.name.uppercase()} [${product.price}]",
+            Toast.LENGTH_SHORT
+        ).show()
 
-        findNavController().navigate(R.id.action_productListFragment_to_productDetailFragment)
-
+        val idProduct = product.id
+        val action =
+            ProductListFragmentDirections.actionProductListFragmentToProductDetailFragment(idProduct)
+        findNavController().navigate(action)
 
     }
 

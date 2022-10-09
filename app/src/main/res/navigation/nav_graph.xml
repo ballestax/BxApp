@@ -9,11 +9,15 @@
         android:id="@+id/productListFragment"
         android:name="com.bacon57.bxapp.ProductListFragment"
         android:label="fragment_product_list"
-        tools:layout="@layout/fragment_product_list" >
+        tools:layout="@layout/fragment_product_list">
         <action
             android:id="@+id/action_productListFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment"
-            app:enterAnim="@anim/nav_default_enter_anim" />
+            app:enterAnim="@anim/nav_default_enter_anim">
+            <argument
+                android:name="idProduct"
+                app:argType="long" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"

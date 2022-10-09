@@ -3,16 +3,19 @@ package com.bacon57.bxapp
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface RetrofitService {
 
     @GET("products")
-    fun getlAllProducts() : Call<List<Product>>
+    fun getAllProducts() : Call<List<Product>>
+
+    @GET("products/{id}")
+    fun getProductById( @Path("id") id:Long) : Call<Product>
 
     @GET("categories")
-    fun getlAllCategories() : Call<List<Category>>
+    fun getAllCategories() : Call<List<Category>>
 
     companion object {
         var retrofitService: RetrofitService? = null
