@@ -10,6 +10,8 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bacon57.bxapp.databinding.FragmentProductListBinding
 
@@ -91,6 +93,8 @@ class ProductListFragment : Fragment() {
 
         Toast.makeText(this.context, "${product.name.uppercase()} [${product.price}]", Toast.LENGTH_SHORT)
             .show()
+
+        findNavController().navigate(R.id.action_productListFragment_to_productDetailFragment)
 
 
     }

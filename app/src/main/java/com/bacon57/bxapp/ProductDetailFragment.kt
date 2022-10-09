@@ -20,6 +20,11 @@ class ProductDetailFragment : Fragment() {
     ): View? {
         _binding = FragmentProductDetailBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        val idProduct = arguments?.getLong("idProduct") ?: 1
+
+        binding.
+
         return view
     }
 
