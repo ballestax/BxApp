@@ -8,5 +8,6 @@ data class Product(
     val code: String,
     val category: String,
     val price: Double,
-    val variable: Boolean
+    val variable: Boolean,
+    val ingredients: Set<Ingredient>
 ): Serializable

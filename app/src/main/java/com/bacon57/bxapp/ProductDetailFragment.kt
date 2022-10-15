@@ -18,6 +18,8 @@ class ProductDetailFragment : Fragment() {
     private var _binding: FragmentProductDetailBinding? = null
     private val binding get() = _binding!!
 
+    lateinit var adapterIngredient: IngredientAdapter
+
     val format: NumberFormat = NumberFormat.getNumberInstance()
 
     lateinit var viewModel: ProductDetailViewModel
@@ -29,6 +31,9 @@ class ProductDetailFragment : Fragment() {
     ): View? {
         _binding = FragmentProductDetailBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        adapterIngredient = IngredientAdapter()
+
 
         val idProduct:Long  = arguments?.getLong("idProduct") ?: 0
         Log.d("ProductDetailFragment", "id::$idProduct")
@@ -67,6 +72,9 @@ class ProductDetailFragment : Fragment() {
             .into(binding.ivImage)
 
         binding.tvTitlePresentations.text = "Presentaciones"
+
+        binding.rvIngredients.adapter = adapterIngredient
+
         binding.tvTitleAditionals.text = "Adicionales"
         binding.tvTitleIngredients.text = "Ingredientes"
 
