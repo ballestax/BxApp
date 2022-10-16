@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginHorizontal="8dp"
     tools:context=".ProductDetailFragment" >
 
@@ -95,6 +95,7 @@
         android:id="@+id/rvPresentations"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:paddingTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitlePresentations" />
@@ -114,6 +115,7 @@
         android:id="@+id/rvIngredients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitleIngredients" />
@@ -132,9 +134,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAditionals"
         android:layout_width="match_parent"
-        android:layout_height="93dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvIngredients" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleAditionals" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
