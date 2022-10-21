@@ -1,143 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginHorizontal="8dp"
-    tools:context=".ProductDetailFragment" >
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ProductDetailFragment">
 
-    <ImageView
-        android:id="@+id/ivImage"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginRight="6dp"
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp">
+
+            <ImageView
+                android:id="@+id/ivImage"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginRight="6dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-    <TextView
-        android:id="@+id/tvName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/ivImage"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@id/ivImage"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@id/ivImage"
-        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@id/ivImage"
+                app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
-    <TextView
-        android:id="@+id/tvCategory"
+            <TextView
+                android:id="@+id/tvCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="TextView"
+                android:textStyle="italic"
+                app:layout_constraintStart_toEndOf="@id/ivImage"
+                app:layout_constraintTop_toBottomOf="@+id/tvPrice" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivImage">
+
+                <Button
+                    android:id="@+id/btMinus"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight=".5"
+                    android:text="-" />
+
+                <TextView
+                    android:id="@+id/tvQuantity"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/btPlus"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight=".5"
+                    android:text="+" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTitlePresentations"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorAccent"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPresentations"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitlePresentations" />
+
+            <TextView
+                android:id="@+id/tvTitleIngredients"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorAccent"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvPresentations" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvIngredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleIngredients" />
+
+            <TextView
+                android:id="@+id/tvTitleAdditionals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorAccent"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvIngredients" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAditionals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleAdditionals" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textStyle="italic"
-        android:gravity="right"
-        app:layout_constraintStart_toEndOf="@id/ivImage"
-        app:layout_constraintTop_toBottomOf="@+id/tvPrice" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivImage">
+        android:orientation="horizontal">
+
 
         <Button
-            android:id="@+id/btMinus"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_weight=".5"
-            android:text="-" />
-
-        <TextView
-            android:id="@+id/tvQuantity"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:id="@+id/btCancel"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:text="1" />
+            android:text="Cancelar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
 
         <Button
-            android:id="@+id/btPlus"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_weight=".5"
-            android:text="+" />
-    </LinearLayout>
+            android:id="@+id/btConfirm"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Confirmar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/tvTitlePresentations"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        android:background="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPresentations"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitlePresentations" />
-
-    <TextView
-        android:id="@+id/tvTitleIngredients"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        android:background="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvPresentations" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvIngredients"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitleIngredients" />
-
-    <TextView
-        android:id="@+id/tvTitleAditionals"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        android:background="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvIngredients" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvAditionals"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitleAditionals" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -27,7 +27,7 @@ class PresentationAdapter() : RecyclerView.Adapter<PresentationViewHolder>() {
 
     override fun onBindViewHolder(holder: PresentationViewHolder, position: Int) {
         val ingredient = presentations[position]
-        holder.render(ingredient, selectedPosition == position, View.OnClickListener() { view ->
+        holder.render(ingredient, selectedPosition == position, View.OnClickListener() {
             run {
                 this.selectedPosition = position
                 notifyDataSetChanged()

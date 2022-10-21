@@ -57,7 +57,11 @@ class ProductListFragment : Fragment() {
 
         viewModel.productList.observe(getViewLifecycleOwner(), Observer {
             Log.d("ProductListFragment", "onCreate: $it")
+
             adapterProd.setproductList(it)
+            binding.shimmerFrameLayout.stopShimmer()
+            binding.shimmerFrameLayout.visibility = View.GONE
+            binding.rvProductsList.visibility = View.VISIBLE
         })
 
         viewModel.errorMessage.observe(getViewLifecycleOwner(), Observer {

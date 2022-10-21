@@ -43,7 +43,7 @@ class ProductDetailFragment : Fragment() {
 
         adapterAdditional = AdditionalAdapter()
 
-        val idProduct:Long  = arguments?.getLong("idProduct") ?: 0
+        val idProduct: Long = arguments?.getLong("idProduct") ?: 0
         Log.d("ProductDetailFragment", "id::$idProduct")
 
         viewModel = ViewModelProvider(
@@ -70,7 +70,7 @@ class ProductDetailFragment : Fragment() {
         _binding = null
     }
 
-    private fun renderProduct(product: Product){
+    private fun renderProduct(product: Product) {
         binding.tvName.text = product.name.uppercase()
         binding.tvPrice.text = format.format(product.price)
         binding.tvQuantity.text = "1"
@@ -93,14 +93,26 @@ class ProductDetailFragment : Fragment() {
         binding.rvIngredients.layoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
 
-        binding.tvTitleAditionals.text = "Adicionales"
+        binding.tvTitleAdditionals.text = "Adicionales"
 
         adapterAdditional.setAdditional(product.additionals)
         binding.rvAditionals.adapter = adapterAdditional
         binding.rvAditionals.layoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
 
+        binding.btPlus.setOnClickListener(View.OnClickListener {
+            var num: Int = Integer.valueOf(binding.tvQuantity.text.toString())
+            val LIM = 100
+            if (num < LIM - 1)
+                binding.tvQuantity.text = String.format("%d", ++num)
+        })
 
+        binding.btMinus.setOnClickListener(View.OnClickListener {
+            var num: Int = Integer.valueOf(binding.tvQuantity.text.toString())
+            val LIM = 1
+            if (num > LIM)
+                binding.tvQuantity.text = String.format("%d", --num)
+        })
 
     }
 
