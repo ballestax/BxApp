@@ -21,6 +21,7 @@
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
             android:layout_marginHorizontal="8dp">
 
             <ImageView
@@ -38,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textSize="18sp"
+                android:layout_marginStart="8dp"
                 app:layout_constraintStart_toEndOf="@id/ivImage"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,6 +47,7 @@
                 android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:text="TextView"
                 app:layout_constraintStart_toEndOf="@id/ivImage"
                 app:layout_constraintTop_toBottomOf="@+id/tvName" />
@@ -71,12 +74,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ivImage">
 
-                <Button
+                <ImageButton
                     android:id="@+id/btMinus"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_weight=".5"
-                    android:text="-" />
+                    android:src="@drawable/ic_baseline_remove_24"
+                     />
 
                 <TextView
                     android:id="@+id/tvQuantity"
@@ -87,30 +91,46 @@
                     android:text="1"
                     android:textSize="16sp" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/btPlus"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_weight=".5"
-                    android:text="+" />
+                    android:src="@drawable/ic_baseline_add_24" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvResumePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="#f412f5"
+                android:paddingHorizontal="6dp"
+                android:text="2000 x 1 = 2000 "
+                android:textStyle="bold"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
             <TextView
                 android:id="@+id/tvTitlePresentations"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="18dp"
                 android:layout_marginTop="20dp"
                 android:background="@color/colorAccent"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/tvResumePrice" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPresentations"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
+                tools:itemCount="3"
+                tools:listitem="@layout/adapter_presentation"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvTitlePresentations" />
@@ -118,7 +138,7 @@
             <TextView
                 android:id="@+id/tvTitleIngredients"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:layout_marginTop="20dp"
                 android:background="@color/colorAccent"
                 android:text="TextView"
@@ -130,7 +150,8 @@
                 android:id="@+id/rvIngredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                tools:itemCount="5"
+                tools:listitem="@layout/adapter_ingredient"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvTitleIngredients" />
@@ -138,7 +159,7 @@
             <TextView
                 android:id="@+id/tvTitleAdditionals"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:layout_marginTop="20dp"
                 android:background="@color/colorAccent"
                 android:text="TextView"
@@ -151,6 +172,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
+                tools:itemCount="5"
+                tools:listitem="@layout/adapter_additional"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"

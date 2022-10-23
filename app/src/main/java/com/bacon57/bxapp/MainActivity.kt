@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.bacon57.bxapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,16 +18,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        if (savedInstanceState == null)
-//            supportFragmentManager.beginTransaction()
-//                .add(R.id.root_layout, ProductListFragment(), "productList").commit()
-
-    }
-
-    private fun  replaceFragment(fragment: Fragment){
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.root_layout, fragment)
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        binding.bottomNavigationView.setupWithNavController(navController)
     }
 }

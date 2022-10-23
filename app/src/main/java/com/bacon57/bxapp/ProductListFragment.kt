@@ -18,6 +18,7 @@ import com.bacon57.bxapp.databinding.FragmentProductListBinding
 
 class ProductListFragment : Fragment() {
 
+    private lateinit var productList: List<Product>
     private var _binding: FragmentProductListBinding? = null
 
     private val binding get() = _binding!!
@@ -27,7 +28,7 @@ class ProductListFragment : Fragment() {
     private val retrofitService = RetrofitService.getInstance()
 
     lateinit var adapterProd: ItemAdapter
-    val adapterCat = FilterAdapter()
+    lateinit var adapterCat : FilterAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +36,8 @@ class ProductListFragment : Fragment() {
     ): View? {
         _binding = FragmentProductListBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        productList = listOf<Product>()
 
         viewModel = ViewModelProvider(
             this, ProductViewModelFactory(
@@ -47,6 +50,8 @@ class ProductListFragment : Fragment() {
         adapterProd = ItemAdapter({ product -> onItemSelected(product) },
             { product -> onItemCustomSelected(product) })
 
+        adapterCat = FilterAdapter({ category -> onCategorySelected(category) })
+
         binding.categoriesList.adapter = adapterCat
         binding.categoriesList.layoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
@@ -57,7 +62,7 @@ class ProductListFragment : Fragment() {
 
         viewModel.productList.observe(getViewLifecycleOwner(), Observer {
             Log.d("ProductListFragment", "onCreate: $it")
-
+            productList = it
             adapterProd.setproductList(it)
             binding.shimmerFrameLayout.stopShimmer()
             binding.shimmerFrameLayout.visibility = View.GONE
@@ -108,6 +113,16 @@ class ProductListFragment : Fragment() {
             ProductListFragmentDirections.actionProductListFragmentToProductDetailFragment(idProduct)
         findNavController().navigate(action)
 
+    }
+
+    fun onCategorySelected(category: Category){
+        Toast.makeText(
+            this.context,
+            "${category.name.uppercase()} ",
+            Toast.LENGTH_SHORT
+        ).show()
+        val filter = productList.filter { product -> product.category.equals(category.name, true) }
+        adapterProd.setproductList(filter)
     }
 
 }

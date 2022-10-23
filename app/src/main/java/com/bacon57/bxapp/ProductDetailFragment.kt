@@ -6,13 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bacon57.bxapp.databinding.FragmentProductDetailBinding
 import com.squareup.picasso.Picasso
+import java.math.BigDecimal
+import java.text.DecimalFormat
 import java.text.NumberFormat
 
 
@@ -79,6 +80,9 @@ class ProductDetailFragment : Fragment() {
         Picasso.get().load("https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg")
             .into(binding.ivImage)
 
+        val itemDecoration = DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL)
+        itemDecoration.setDrawable(requireContext().getDrawable(R.drawable.divider)!!)
+
         binding.tvTitlePresentations.text = "Presentaciones"
 
         adapterPresentation.setPresentation(product.presentations)
@@ -90,6 +94,7 @@ class ProductDetailFragment : Fragment() {
 
         adapterIngredient.setIngredient(product.ingredients)
         binding.rvIngredients.adapter = adapterIngredient
+        binding.rvIngredients.addItemDecoration(itemDecoration)
         binding.rvIngredients.layoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
 
@@ -97,6 +102,7 @@ class ProductDetailFragment : Fragment() {
 
         adapterAdditional.setAdditional(product.additionals)
         binding.rvAditionals.adapter = adapterAdditional
+        binding.rvAditionals.addItemDecoration(itemDecoration)
         binding.rvAditionals.layoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
 
@@ -105,6 +111,7 @@ class ProductDetailFragment : Fragment() {
             val LIM = 100
             if (num < LIM - 1)
                 binding.tvQuantity.text = String.format("%d", ++num)
+            calculatePrice(num)
         })
 
         binding.btMinus.setOnClickListener(View.OnClickListener {
@@ -112,9 +119,19 @@ class ProductDetailFragment : Fragment() {
             val LIM = 1
             if (num > LIM)
                 binding.tvQuantity.text = String.format("%d", --num)
+            calculatePrice(num)
         })
-
     }
 
-
+    private fun calculatePrice (quantity: Int){
+        if(quantity>1) {
+            val df: DecimalFormat = format as DecimalFormat
+            df.isParseBigDecimal = true
+            val price = df.parse(binding.tvPrice.text.toString()) as BigDecimal
+            val priceBase = price
+            price.multiply(BigDecimal(quantity))
+            binding.tvResumePrice.text = "$priceBase x $quantity = $price"
+        }
+        binding.tvResumePrice.text= ""
+    }
 }
