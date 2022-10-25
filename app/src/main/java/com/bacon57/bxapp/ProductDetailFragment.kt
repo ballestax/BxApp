@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -121,17 +123,32 @@ class ProductDetailFragment : Fragment() {
                 binding.tvQuantity.text = String.format("%d", --num)
             calculatePrice(num)
         })
+
+        binding.btCancel.setOnClickListener(View.OnClickListener { onCancelAction() })
+        binding.btConfirm.setOnClickListener(View.OnClickListener { onConfirmAction() })
     }
 
-    private fun calculatePrice (quantity: Int){
-        if(quantity>1) {
-            val df: DecimalFormat = format as DecimalFormat
-            df.isParseBigDecimal = true
-            val price = df.parse(binding.tvPrice.text.toString()) as BigDecimal
-            val priceBase = price
+    private fun calculatePrice(quantity: Int) {
+        val df: DecimalFormat = format as DecimalFormat
+        df.isParseBigDecimal = true
+        val price = df.parse(binding.tvPrice.text.toString()) as BigDecimal
+        val priceBase = price
+        if (quantity >= 1) {
             price.multiply(BigDecimal(quantity))
             binding.tvResumePrice.text = "$priceBase x $quantity = $price"
         }
-        binding.tvResumePrice.text= ""
+        binding.tvResumePrice.text = "$priceBase"
+    }
+
+    fun onCancelAction() {
+        val action =
+            ProductDetailFragmentDirections.actionProductDetailFragmentToProductListFragment()
+        findNavController().navigate(action)
+    }
+
+    fun onConfirmAction() {
+        val action =
+            ProductDetailFragmentDirections.actionProductDetailFragmentToOrderFragment()
+        findNavController().navigate(action)
     }
 }

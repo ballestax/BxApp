@@ -19,6 +19,7 @@ import com.bacon57.bxapp.databinding.FragmentProductListBinding
 class ProductListFragment : Fragment() {
 
     private lateinit var productList: List<Product>
+    private lateinit var categoryList: List<Category>
     private var _binding: FragmentProductListBinding? = null
 
     private val binding get() = _binding!!
@@ -67,6 +68,9 @@ class ProductListFragment : Fragment() {
             binding.shimmerFrameLayout.stopShimmer()
             binding.shimmerFrameLayout.visibility = View.GONE
             binding.rvProductsList.visibility = View.VISIBLE
+//            if(!categoryList.isEmpty()) {
+//                adapterProd.setproductList(filterListByCategory(categoryList[0].name))
+//            }
         })
 
         viewModel.errorMessage.observe(getViewLifecycleOwner(), Observer {
@@ -75,6 +79,7 @@ class ProductListFragment : Fragment() {
 
         viewModel.categoriesList.observe(getViewLifecycleOwner(), Observer {
             Log.d("ProductListFragment", "onCreate: $it")
+            categoryList= it
             adapterCat.setCategoriesList(it)
         })
 
@@ -102,12 +107,6 @@ class ProductListFragment : Fragment() {
 
     fun onItemCustomSelected(product: Product) {
 
-        Toast.makeText(
-            this.context,
-            "${product.name.uppercase()} [${product.price}]",
-            Toast.LENGTH_SHORT
-        ).show()
-
         val idProduct = product.id
         val action =
             ProductListFragmentDirections.actionProductListFragmentToProductDetailFragment(idProduct)
@@ -116,13 +115,11 @@ class ProductListFragment : Fragment() {
     }
 
     fun onCategorySelected(category: Category){
-        Toast.makeText(
-            this.context,
-            "${category.name.uppercase()} ",
-            Toast.LENGTH_SHORT
-        ).show()
-        val filter = productList.filter { product -> product.category.equals(category.name, true) }
-        adapterProd.setproductList(filter)
+        adapterProd.setproductList(filterListByCategory(category.name))
+    }
+
+    private fun filterListByCategory(categoryName: String): List<Product> {
+        return productList.filter { product -> product.category.equals(categoryName, true) }
     }
 
 }

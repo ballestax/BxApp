@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_baseline_fastfood_24"
         />
 
-    <item android:id="@+id/productDetailFragment"
+    <item android:id="@+id/tablesFragment"
         android:title="Mesas"
         android:icon="@drawable/ic_baseline_list_alt_24"
         />
