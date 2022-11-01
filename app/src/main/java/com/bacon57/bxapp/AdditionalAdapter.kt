@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bacon57.bxapp.databinding.AdapterAdditionalBinding
+import com.bacon57.bxapp.model.Additional
 
 class AdditionalAdapter: RecyclerView.Adapter<AdditionalViewHolder>(){
 

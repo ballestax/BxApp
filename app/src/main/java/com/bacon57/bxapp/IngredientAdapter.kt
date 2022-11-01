@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bacon57.bxapp.databinding.AdapterIngredientBinding
+import com.bacon57.bxapp.model.Ingredient
 
 class IngredientAdapter: RecyclerView.Adapter<IngredientViewHolder>(){
 

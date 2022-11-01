@@ -1,8 +1,8 @@
 package com.bacon57.bxapp
 
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bacon57.bxapp.databinding.AdapterProductBinding
+import com.bacon57.bxapp.model.Product
 import com.squareup.picasso.Picasso
 import java.text.NumberFormat
 

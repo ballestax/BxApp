@@ -2,9 +2,9 @@ package com.bacon57.bxapp
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bacon57.bxapp.databinding.AdapterProductBinding
+import com.bacon57.bxapp.model.Product
 
 class ItemAdapter(
     private val onClickListener: (Product) ->Unit,

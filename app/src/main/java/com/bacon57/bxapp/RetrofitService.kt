@@ -1,5 +1,7 @@
 package com.bacon57.bxapp
 
+import com.bacon57.bxapp.model.Category
+import com.bacon57.bxapp.model.Product
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

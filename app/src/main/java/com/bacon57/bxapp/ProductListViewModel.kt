@@ -1,10 +1,11 @@
 package com.bacon57.bxapp
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bacon57.bxapp.model.Category
+import com.bacon57.bxapp.model.Product
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback

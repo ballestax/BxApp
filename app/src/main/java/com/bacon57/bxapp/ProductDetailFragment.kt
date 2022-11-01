@@ -6,13 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bacon57.bxapp.databinding.FragmentProductDetailBinding
+import com.bacon57.bxapp.model.Product
 import com.squareup.picasso.Picasso
 import java.math.BigDecimal
 import java.text.DecimalFormat
@@ -131,13 +131,14 @@ class ProductDetailFragment : Fragment() {
     private fun calculatePrice(quantity: Int) {
         val df: DecimalFormat = format as DecimalFormat
         df.isParseBigDecimal = true
-        val price = df.parse(binding.tvPrice.text.toString()) as BigDecimal
+        var price = df.parse(binding.tvPrice.text.toString()) as BigDecimal
         val priceBase = price
         if (quantity >= 1) {
-            price.multiply(BigDecimal(quantity))
+            price = price.multiply(BigDecimal(quantity))
             binding.tvResumePrice.text = "$priceBase x $quantity = $price"
+        } else {
+            binding.tvResumePrice.text = "$priceBase"
         }
-        binding.tvResumePrice.text = "$priceBase"
     }
 
     fun onCancelAction() {

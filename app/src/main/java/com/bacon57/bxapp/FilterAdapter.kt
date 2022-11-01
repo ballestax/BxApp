@@ -4,9 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bacon57.bxapp.databinding.AdapterCategoryBinding
-import com.bacon57.bxapp.databinding.AdapterProductBinding
-import com.squareup.picasso.Picasso
-import java.text.NumberFormat
+import com.bacon57.bxapp.model.Category
 
 class FilterAdapter(
     private val onClickListener: (Category) -> Unit

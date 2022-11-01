@@ -6,7 +6,7 @@
     <data>
         <variable
             name="product"
-            type="com.bacon57.bxapp.Product" />
+            type="com.bacon57.bxapp.model.Product" />
 
         <variable
             name="viewmodel"

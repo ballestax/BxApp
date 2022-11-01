@@ -3,10 +3,9 @@ package com.bacon57.bxapp
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
-import androidx.databinding.adapters.AdapterViewBindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bacon57.bxapp.databinding.AdapterPresentationBinding
+import com.bacon57.bxapp.model.Presentation
 
 class PresentationAdapter() : RecyclerView.Adapter<PresentationViewHolder>() {
 
