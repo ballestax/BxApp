@@ -1,5 +1,6 @@
 package com.bacon57.bxapp
 
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.bacon57.bxapp.databinding.AdapterProductBinding
 import com.bacon57.bxapp.model.Product
@@ -19,7 +20,13 @@ class ProductViewHolder(
         binding.tvCategory.text = product.category.replaceFirstChar { char-> char.uppercase() }
         binding.tvPrice.text = format.format(product.price)
 //        binding.ivImage
-        Picasso.get().load("https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg")
+        var url = "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+        if(product.image!=null){
+            url = "https://"+product.image
+            Log.d("AppDebug", url)
+        }
+
+        Picasso.get().load(url)
             .into(binding.ivImage)
         binding.btAdd.setOnClickListener{
             onClickListener(product)

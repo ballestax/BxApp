@@ -79,7 +79,12 @@ class ProductDetailFragment : Fragment() {
         binding.tvQuantity.text = "1"
         binding.tvCategory.text = product.category
 
-        Picasso.get().load("https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg")
+        var url = "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+        if(product.image!=null){
+            url = "https://"+product.image
+            Log.d("AppDebug", url)
+        }
+        Picasso.get().load(url)
             .into(binding.ivImage)
 
         val itemDecoration = DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL)

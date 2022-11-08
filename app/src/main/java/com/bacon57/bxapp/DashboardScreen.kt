@@ -1,6 +1,5 @@
 package com.bacon57.bxapp
 
-import android.view.RoundedCorner
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -12,7 +11,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -31,13 +29,13 @@ fun DashboardScreen(
             .padding(8.dp)
     ) {
 
-        Greetins()
+        Greetings()
         ChipSection(chips = listOf("Chip1", "Chip2", "Chip 3"))
     }
 }
 
 @Composable
-fun Greetins(){
+fun Greetings(){
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(text = "Bienvenido usuario",
         fontSize = 24.sp,

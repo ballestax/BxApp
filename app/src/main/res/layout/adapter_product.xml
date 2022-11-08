@@ -19,7 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
         android:layout_marginVertical="8dp"
-        android:background="@color/white">
+        android:elevation="6dp"
+        android:background="#38424A">
 
         <ImageView
             android:id="@+id/ivImage"
@@ -33,7 +34,7 @@
             android:text="Hamburguesa"
             android:textSize="16sp"
             android:textAllCaps="true"
-            android:textColor="@color/black"
+            android:textColor="@color/whiteText"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +48,7 @@
             android:layout_height="wrap_content"
             android:text="Categoria"
             android:textStyle="italic"
-            android:textColor="@color/purple_500"
+            android:textColor="#FF9800"
             android:layout_marginLeft="8dp"
             app:layout_constraintLeft_toRightOf="@+id/ivImage"
             app:layout_constraintTop_toBottomOf="@id/tvName" />
@@ -60,31 +61,37 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:textStyle="bold"
-            android:textColor="@color/purple_700"
+            android:textColor="@color/white"
             app:layout_constraintLeft_toRightOf="@+id/ivImage"
             app:layout_constraintTop_toBottomOf="@id/tvCategory" />
 
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btAdd"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimaryLight"
             android:layout_marginRight="8dp"
+            app:cornerRadius="5dp"
             android:drawableLeft="@drawable/ic_baseline_add_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.931"
             app:layout_constraintStart_toEndOf="@+id/ivImage"
+            android:layout_marginBottom="6dp"
             />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btPref"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
+            app:cornerRadius="5dp"
+            android:backgroundTint="@color/colorPrimaryLight"
             android:drawableLeft="@drawable/ic_baseline_playlist_add_24"
             android:layout_marginRight="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btAdd" />
+            app:layout_constraintEnd_toStartOf="@+id/btAdd"
+            android:layout_marginBottom="6dp"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
