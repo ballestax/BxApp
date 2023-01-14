@@ -28,7 +28,7 @@
             android:background="#c8c8c9"
             app:layout_constraintStart_toEndOf="@id/ivImage"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>/>
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <View
             android:id="@+id/tvCategory"
