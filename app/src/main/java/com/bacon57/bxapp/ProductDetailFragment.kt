@@ -33,6 +33,8 @@ class ProductDetailFragment : Fragment() {
     lateinit var viewModel: ProductDetailViewModel
     private val retrofitService = RetrofitService.getInstance()
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -81,8 +83,7 @@ class ProductDetailFragment : Fragment() {
 
         var url = "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
         if(product.image!=null){
-            url = "https://"+product.image
-            Log.d("AppDebug", url)
+            url = product.image
         }
         Picasso.get().load(url)
             .into(binding.ivImage)
@@ -156,5 +157,9 @@ class ProductDetailFragment : Fragment() {
         val action =
             ProductDetailFragmentDirections.actionProductDetailFragmentToOrderFragment()
         findNavController().navigate(action)
+    }
+
+    fun parseProduct(){
+
     }
 }

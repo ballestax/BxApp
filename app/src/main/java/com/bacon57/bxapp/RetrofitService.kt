@@ -24,7 +24,7 @@ interface RetrofitService {
         fun getInstance(): RetrofitService{
             if(retrofitService == null){
                 val retrofit = Retrofit.Builder()
-                    .baseUrl("http://http://ec2-52-90-86-85.compute-1.amazonaws.com/api/")
+                    .baseUrl("http://ec2-52-90-86-85.compute-1.amazonaws.com/api/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 retrofitService = retrofit.create(RetrofitService::class.java)

@@ -22,7 +22,7 @@ class ProductViewHolder(
 //        binding.ivImage
         var url = "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
         if(product.image!=null){
-            url = "https://"+product.image
+            url = product.image
             Log.d("AppDebug", url)
         }
 

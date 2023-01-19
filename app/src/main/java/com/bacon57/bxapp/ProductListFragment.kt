@@ -2,11 +2,11 @@ package com.bacon57.bxapp
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -17,6 +17,8 @@ import com.bacon57.bxapp.model.Product
 
 
 class ProductListFragment : Fragment() {
+
+    private val TAG = "ProductListFragment"
 
     private lateinit var productList: List<Product>
     private lateinit var categoryList: List<Category>
@@ -48,6 +50,8 @@ class ProductListFragment : Fragment() {
             )
         )[ProductListViewModel::class.java]
 
+        Log.d(TAG, viewModel.productList.toString())
+
         adapterProd = ItemAdapter({ product -> onItemSelected(product) },
             { product -> onItemCustomSelected(product) })
 
@@ -62,15 +66,16 @@ class ProductListFragment : Fragment() {
 //        binding.rvProductsList.layoutManager = GridLayoutManager(this.context,2)
 
         viewModel.productList.observe(getViewLifecycleOwner(), Observer {
-            Log.d("ProductListFragment", "onCreate: $it")
+            Log.d(TAG, "onCreate: $it")
             productList = it
             adapterProd.setproductList(it)
+            //println(it)
             binding.shimmerFrameLayout.stopShimmer()
             binding.shimmerFrameLayout.visibility = View.GONE
             binding.rvProductsList.visibility = View.VISIBLE
-//            if(!categoryList.isEmpty()) {
-//                adapterProd.setproductList(filterListByCategory(categoryList[0].name))
-//            }
+            if(!categoryList.isEmpty()) {
+                adapterProd.setproductList(filterListByCategory(categoryList[0].name))
+            }
         })
 
         viewModel.errorMessage.observe(getViewLifecycleOwner(), Observer {
@@ -78,15 +83,12 @@ class ProductListFragment : Fragment() {
         })
 
         viewModel.categoriesList.observe(getViewLifecycleOwner(), Observer {
-            Log.d("ProductListFragment", "onCreate: $it")
+            Log.d(TAG, "onCreate: $it")
             categoryList= it
             adapterCat.setCategoriesList(it)
         })
 
-        viewModel.progressVisible.observe(getViewLifecycleOwner(), Observer {
-            Log.d("ProductListFragment", "onCreate: $it")
-//            binding.progressBar.set
-        })
+
 
         viewModel.getAllCategories()
         viewModel.getAllProducts()

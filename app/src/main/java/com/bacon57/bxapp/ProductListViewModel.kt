@@ -1,5 +1,6 @@
 package com.bacon57.bxapp
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,20 +18,17 @@ class ProductListViewModel(
 ) :
     ViewModel() {
 
+    private val TAG = "ProductListViewModel"
+
     val productList = MutableLiveData<List<Product>>()
     val categoriesList = MutableLiveData<List<Category>>()
-    val _progressVisible = MutableLiveData<Boolean>()
-    val progressVisible: LiveData<Boolean> get() = _progressVisible
-
 
     val errorMessage = MutableLiveData<String>()
 
     fun onCreate() {
         viewModelScope.launch {
-            _progressVisible.value = true
             getAllProducts()
             getAllCategories()
-            _progressVisible.value = false
         }
     }
 
@@ -43,10 +41,12 @@ class ProductListViewModel(
         val response = repository.getAllProducts()
         response.enqueue(object : Callback<List<Product>> {
             override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
+                Log.d(TAG, response.message())
                 productList.postValue(response.body())
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
+                Log.d(TAG, t.message.toString())
                 errorMessage.postValue(t.message)
             }
         }
@@ -60,10 +60,12 @@ class ProductListViewModel(
                 call: Call<List<Category>>,
                 response: Response<List<Category>>
             ) {
+                Log.d(TAG, response.message())
                 categoriesList.postValue(response.body())
             }
 
             override fun onFailure(call: Call<List<Category>>, t: Throwable) {
+                Log.d(TAG, t.message.toString())
                 errorMessage.postValue(t.message)
             }
         }
