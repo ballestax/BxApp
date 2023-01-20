@@ -9,9 +9,14 @@ import com.bacon57.bxapp.model.Additional
 class AdditionalAdapter: RecyclerView.Adapter<AdditionalViewHolder>(){
 
     var addtionals = mutableListOf<Additional>()
+    private val checked = mutableListOf<Boolean>()
+    private val quantitys = mutableListOf<Integer>()
 
     fun setAdditional(addtionals: List<Additional>){
         this.addtionals = addtionals.toMutableList()
+        checked.clear()
+        addtionals.forEach { checked.add(false) }
+        //addtionals.forEach { quantitys.add() }
         notifyDataSetChanged()
     }
 
@@ -24,7 +29,7 @@ class AdditionalAdapter: RecyclerView.Adapter<AdditionalViewHolder>(){
     override fun onBindViewHolder(holder: AdditionalViewHolder, position: Int) {
         val ingredient = addtionals[position]
 //        holder.binding
-        holder.render(ingredient)
+        holder.render(ingredient, checked, quantitys, position)
     }
 
     override fun getItemCount(): Int {
@@ -34,10 +39,12 @@ class AdditionalAdapter: RecyclerView.Adapter<AdditionalViewHolder>(){
 
 class AdditionalViewHolder(val binding: AdapterAdditionalBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    fun render(additional: Additional) {
+    fun render(additional: Additional, checked: MutableList<Boolean>, quantitys: MutableList<Integer>, position: Int) {
         binding.tvName.text = additional.name.uppercase()
         binding.tvPrice.text =additional.price.toString()
-        // binding.btAdd.setOnClickListener{ onClickListener(product) }
+        binding.cbSelected.setOnClickListener{
+            checked[position] = !checked[position]
+        }
     }
 
 }
