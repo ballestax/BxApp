@@ -7,6 +7,5 @@ data class ProductOrder(
     val presentationId: Long,
     val price: BigDecimal,
     val exclusions: List<Ingredient>,
-    val additions: List<Additional>,
-    
+    val additions: List<Additional>
 ) : java.io.Serializable

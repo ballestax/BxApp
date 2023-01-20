@@ -73,7 +73,7 @@ class ProductListFragment : Fragment() {
             binding.shimmerFrameLayout.stopShimmer()
             binding.shimmerFrameLayout.visibility = View.GONE
             binding.rvProductsList.visibility = View.VISIBLE
-            if(!categoryList.isEmpty()) {
+            if(categoryList.isNotEmpty()) {
                 adapterProd.setproductList(filterListByCategory(categoryList[0].name))
             }
         })
